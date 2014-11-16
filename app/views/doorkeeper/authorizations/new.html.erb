@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="panel auth-panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Authorization Required</h3>
+            </div>
+            <div class="panel-body">
+              <p class="h4">
+                Authorize <strong class="text-info"><%= @pre_auth.client.name %></strong> to use your account?
+              </p>
+
+              <% if @pre_auth.scopes.count > 0 %>
+                <div id="oauth-permissions">
+                  <p>This application will be able to:</p>
+
+                  <ul class="text-info">
+                    <% @pre_auth.scopes.each do |scope| %>
+                      <li><%= t scope, scope: [:doorkeeper, :scopes] %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <div class="actions row">
+                <div class="col-md-6">
+                  <%= form_tag oauth_authorization_path, method: :post do %>
+                    <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
+                    <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri %>
+                    <%= hidden_field_tag :state, @pre_auth.state %>
+                    <%= hidden_field_tag :response_type, @pre_auth.response_type %>
+                    <%= hidden_field_tag :scope, @pre_auth.scope %>
+                    <%= submit_tag "Authorize", class: "btn btn-success btn-lg btn-block" %>
+                  <% end %>
+                </div>
+                <div class="col-md-6">
+                  <%= form_tag oauth_authorization_path, method: :delete do %>
+                    <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
+                    <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri %>
+                    <%= hidden_field_tag :state, @pre_auth.state %>
+                    <%= hidden_field_tag :response_type, @pre_auth.response_type %>
+                    <%= hidden_field_tag :scope, @pre_auth.scope %>
+                    <%= submit_tag "Deny", class: "btn btn-danger btn-lg btn-block" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
