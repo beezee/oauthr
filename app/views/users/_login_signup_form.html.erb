@@ -1,0 +1,26 @@
+<div class="panel-body">
+    <%= form_tag(submit_url, method: 'post', role: 'form') do %>
+        <fieldset>
+            <div class="form-group">
+                <input class="form-control" 
+                  placeholder="E-mail" 
+                  name="email" 
+                  type="email" autofocus>
+            </div>
+            <div class="form-group">
+                <input class="form-control" 
+                  placeholder="Password" 
+                  name="password" 
+                  type="password" 
+                  value="">
+            </div>
+            <!-- Change this to a button or input when using this as a form -->
+            <%= tag("input", type: "hidden", name: "redirect_to",
+                      value: @redirect_to) %> 
+            <input type="submit" 
+              class="btn btn-lg btn-success btn-block"
+              value="<%= button_txt %>" />
+        </fieldset>
+    <% end %>
+</div>
+

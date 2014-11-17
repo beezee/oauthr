@@ -1,0 +1,9 @@
+<% if !flash.empty? %>
+  <div class="flash row">
+    <div class="col-md-4 col-md-offset-4"> 
+      <% flash.each do |k, v| %>
+        <div class="alert alert-<%= k %>"><%= v.html_safe %></div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

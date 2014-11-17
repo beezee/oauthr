@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   post '/login' => 'users#handle_login', as: 'handle_login'
   get '/logout' => 'users#logout', as: 'logout'
 
+  get '/signup' => 'users#signup', as: 'signup'
+  post '/signup' => 'users#handle_signup', as: 'handle_signup'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
