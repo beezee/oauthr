@@ -48,14 +48,14 @@ describe AuthenticationHelper do
   end
 
   describe '#login_redirect_params' do
-    let(:session) do
+    let(:request) do
       env = {'PATH_INFO' => 'foo', 
         'rack.url_scheme' => 'https', 'HTTP_HOST' => 'localtest/'}
       ActionDispatch::Request.new(env)
     end
     let(:authenticator) do
       AuthenticationHelper::Authenticator.
-        for_session_and_request(nil, session)
+        for_session_and_request(nil, request)
     end
 
     it 'returns the correct params for a redirect to login' do
